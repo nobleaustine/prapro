@@ -1,2 +1,2 @@
 # prapro
-real programming repository
+real programming projects
