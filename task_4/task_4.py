@@ -11,10 +11,8 @@ import requests
 import os
 
 # extracting all info in links.parquet and storing it as a pandas table
-table = pq.read_table("links.parquet")
+table = pq.read_table("links.parquet",columns=["URL"])
 df = table.to_pandas()
-# correcting the indices as it was not in order
-df.reset_index(drop=True, inplace=True)
 
 # keeping header to make as if the requests is coming from a server
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0'}
@@ -22,7 +20,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Ge
 # downloading the first n images and storing it
 n = int(input("Enter no. of images: "))
 i = 1
-for url in df["URL"]:
+for index,url in df['URL'].items():
     if i == n+1:
         break
     # extracting the extension
@@ -46,7 +44,7 @@ for url in df["URL"]:
             if response.status_code == 200 and ext != "":
                 with open(image_path, "wb") as file:
                     file.write(response.content)
-                print(f"Downloaded {image_name}")
+                print(f"{index} Downloaded {image_name}")
                 i+=1
             elif(ext == ""):
                 print(f"No extension:{ext}")
@@ -54,8 +52,7 @@ for url in df["URL"]:
                 print(f"Failed to retrieve image. Status code: {response.status_code}")
         else:
              print("Connection is not secure (HTTP)")
-        
-            
+              
     except Exception as e:
         print(f"An error occurred: {e}")
         
