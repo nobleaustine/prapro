@@ -1,17 +1,24 @@
 from task_5 import Downloader
+import pytest
+import os
 
-def test():
+@pytest.mark.parametrize("index",[8,22,34])
+def test_index(index):
 
     d = Downloader("./task_4/links.parquet")
-    i = 8
-    image_path = d[i]
+    image_path = d[index]
 
     # test case for downloading one file
-    assert image_path.split(".") == f"./task_5/downloads/image_{i}" or "Download failed: an error occured"
+    assert os.path.exists(image_path) == True or image_path== "Download failed: an error occured"
 
-    s,e=13,15 
-    image_paths = d[s:int(e)]
+@pytest.mark.parametrize("part",[slice(13,15),slice(25,29),slice(40,45)])   
+def test_slice(part):
+    s = part.start
+    e = part.stop
+    d = Downloader("./task_4/links.parquet")
+
+    image_paths = d[s:e]
     for path in image_paths:
-        assert path.split(".") == f"./task_5/downloads/image_{s}" or "Download failed: an error occured"
+        assert os.path.exists(path) == True or path== "Download failed: an error occured"
         s+=1
 
