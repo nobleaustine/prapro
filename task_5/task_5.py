@@ -39,11 +39,12 @@ class Downloader:
         
         # setting up url and image name
         url = self.df["URL"][index]
-        URL = url.split('/')[-1]
-        extension = URL.split('?')[0]
-        ext = extension.split('.')[-1]
-        image_name = f"image_{index}.{ext}"
-        image_path = os.path.join(".//task_5//downloads", image_name)
+        root,ext = os.path.splitext(url)
+        # removing the arguments part of url
+        ext = ext.split('?')[0]
+        image_name = f"image_{index}{ext}"
+        image_path = os.path.join("./task_5/downloads", image_name)
+
 
         if len(ext) > 4 or len(ext) < 1 :
             print("Download failed: invalid file extension") 
@@ -73,17 +74,17 @@ class Downloader:
             image_paths.append(image_path)
         return image_paths
 
-# Testing
-d = Downloader(".//task_4//links.parquet")
-i = int(input("Enter the index of the image to be downloaded: "))
-image_path = d[i]
-print("Local path of image {i}:", image_path)
-print(" ")
+# # Testing
+# d = Downloader("./task_4/links.parquet")
+# i = int(input("Enter the index of the image to be downloaded: "))
+# image_path = d[i]
+# print(f"Local path of image {i}:", image_path)
+# print(" ")
 
-code_string = str(input("Enter index range: "))
-s,e=code_string.split(":")
-image_paths = d[int(s):int(e)]
-print(f"Local paths of images in the range {code_string}: ")
-for path in image_paths:
-    print(path)
+# code_string = str(input("Enter index range: "))
+# s,e=code_string.split(":")
+# image_paths = d[int(s):int(e)]
+# print(f"Local paths of images in the range {code_string}: ")
+# for path in image_paths:
+#     print(path)
     
