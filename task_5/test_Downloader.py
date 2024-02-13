@@ -5,7 +5,7 @@ import os
 @pytest.mark.parametrize("index",[8,22,34])
 def test_index(index):
 
-    d = Downloader("./task_4/links.parquet")
+    d = Downloader("../task_4/links.parquet")
     image_path = d[index]
 
     # test case for downloading one file
@@ -15,7 +15,7 @@ def test_index(index):
 def test_slice(part):
     s = part.start
     e = part.stop
-    d = Downloader("./task_4/links.parquet")
+    d = Downloader("../task_4/links.parquet")
 
     image_paths = d[s:e]
     for path in image_paths:

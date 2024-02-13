@@ -43,7 +43,7 @@ class Downloader:
         # removing the arguments part of url
         ext = ext.split('?')[0]
         image_name = f"image_{index}{ext}"
-        image_path = os.path.join("./task_5/downloads", image_name)
+        image_path = os.path.join("./downloads", image_name)
 
 
         if len(ext) > 4 or len(ext) < 1 :
