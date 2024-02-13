@@ -11,7 +11,7 @@ def test_index(index):
     # test case for downloading one file
     assert os.path.exists(image_path) == True or image_path== "Download failed: an error occured"
 
-@pytest.mark.parametrize("part",[slice(13,100),slice(125,200),slice(300,450)])   
+@pytest.mark.parametrize("part",[slice(13,100),slice(125,200),slice(300,1200)])   
 def test_slice(part):
     s = part.start
     e = part.stop
