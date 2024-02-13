@@ -1,2 +1,5 @@
 *.parquet
 task_4/downloads
+task_6/downloads
+.pytest_cache
+__pycache__
