@@ -19,6 +19,7 @@ class Downloader:
     # constructor equivalent function gets called at Downloader(link)
     def __init__(self, pq_file: str):
 
+        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=50)
         self.df = pq.read_table(pq_file,columns=["URL"]).to_pandas()
         self.header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0'}
     
@@ -66,11 +67,13 @@ class Downloader:
         
     # downloading images within a range
     def download_range(self, start: int, stop: int) -> list:
-        image_paths = []
-        with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
-            for i in range(start, stop):
-              future = executor.submit(self.download_image,i)
-              image_paths.append(future.result())
+        results = []
+        
+        for i in range(start, stop):
+            future = self.executor.submit(self.download_image,i)
+            results.append(future)
+
+        image_paths = [future.result() for future in concurrent.futures.as_completed(results)]
 
         return image_paths
 
