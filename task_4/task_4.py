@@ -10,8 +10,9 @@ import pyarrow.parquet as pq
 import requests
 import os
 
+file_path = "links.parquet"
 # extracting all info in links.parquet and storing it as a pandas table
-table = pq.read_table("links.parquet",columns=["URL"])
+table = pq.read_table(file_path,columns=["URL"])
 df = table.to_pandas()
 
 # keeping header to make as if the requests is coming from a server

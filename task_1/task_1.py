@@ -1,5 +1,7 @@
 # Declare a variable in Python.
 
-# declaring and intializing a variable named task_1
-task_1 = 6
-print(task_1)
+# declaring and intializing different variables
+task1 = 6
+task2 = 3.6
+task3 = "hello world"
+
