@@ -67,17 +67,10 @@ class Downloader:
         
     # downloading images within a range
     def download_range(self, start: int, stop: int) -> list:
-        results = []
-        
-        for i in range(start, stop):
-            future = self.executor.submit(self.download_image,i)
-            results.append(future)
-
-        image_paths = [future.result() for future in concurrent.futures.as_completed(results)]
+    
+        arguments = list(range(start, stop))
+        image_paths = list(self.executor.map(self.download_image, arguments))
 
         return image_paths
 
 
-#  demo testing     
-# d = Downloader("../task_4/links.parquet")
-# image_path = d[13]
