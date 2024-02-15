@@ -10,7 +10,7 @@ import pyarrow.parquet as pq
 import requests
 import os
 
-def get_image(url,i,index):
+def get_image(url,i):
 
     URL = url.split('/')[-1]
     extension = URL.split('?')[0]
@@ -24,14 +24,14 @@ def get_image(url,i,index):
         # downloading the images and storing 
         # putting try catch to check if link is valid and extension is there
         try:
-            response = requests.get(url, headers=headers)
+            response = requests.get(url, headers=headers,timeout=(10,40))
 
             if response.url.startswith('https://'):
 
                 if response.status_code == 200 :
                     with open(image_path, "wb") as file:
                         file.write(response.content)
-                    print(f"{index} Downloaded {image_name}")
+                    print(f"Downloaded {image_name}")
                     return image_path
                     i+=1
                 else:
@@ -61,4 +61,6 @@ if __name__ == "__main__":
     for index,url in df['URL'].items():
         if i == n+1:
             break
-        get_image(url,i,index)
+        print(f"df index: ",index)
+        get_image(url,i)
+        print(" ")
