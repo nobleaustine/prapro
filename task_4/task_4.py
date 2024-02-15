@@ -64,3 +64,4 @@ if __name__ == "__main__":
         print(f"df index: ",index)
         get_image(url,i)
         print(" ")
+
