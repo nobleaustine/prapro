@@ -4,4 +4,3 @@
 task1 = 6
 task2 = 3.6
 task3 = "hello world"
-
