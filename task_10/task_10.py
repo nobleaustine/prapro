@@ -58,10 +58,6 @@ def GDA(X, Y, epochs):
         w = w - 0.001 * dL_dw
         b = b - 0.001 * dL_db
 
-        # returning if w,b is infinity
-        if abs(w[0][0]) == float("inf") or abs(b[0][0]) == float("inf"):
-            return w[0][0], b[0][0]
-
         if __name__ == "__main__":
             if i % 100 == 0:
                 plot_graph(w[0][0], b[0][0])
@@ -70,6 +66,7 @@ def GDA(X, Y, epochs):
 
 
 if __name__ == "__main__":
+
     # data
     X = np.array([[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]])
     x = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
