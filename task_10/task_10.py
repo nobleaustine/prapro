@@ -13,6 +13,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# function to plot actual and predicted line
 def plot_graph(m, c):
 
     global x
@@ -29,6 +30,7 @@ def plot_graph(m, c):
     plt.show()
 
 
+# function to perform GDA
 def GDA(X, Y, epochs):
 
     # initializing random weight and bias
@@ -39,6 +41,7 @@ def GDA(X, Y, epochs):
     I = np.ones((n, 1))
 
     for i in range(epochs):
+
         print("epoch: ", i)
         P = X @ w + I @ b
 
@@ -55,8 +58,15 @@ def GDA(X, Y, epochs):
         w = w - 0.001 * dL_dw
         b = b - 0.001 * dL_db
 
-        if i % 100 == 0:
-            plot_graph(w[0][0], b[0][0])
+        # returning if w,b is infinity
+        if abs(w[0][0]) == float("inf") or abs(b[0][0]) == float("inf"):
+            return w[0][0], b[0][0]
+
+        if __name__ == "__main__":
+            if i % 100 == 0:
+                plot_graph(w[0][0], b[0][0])
+
+    return w[0][0], b[0][0]
 
 
 if __name__ == "__main__":
@@ -67,4 +77,6 @@ if __name__ == "__main__":
     X = X.T
     Y = Y.T
 
-    GDA(X, Y, 1000)
+    # GDA on action
+    w, b = GDA(X, Y, 1000)
+    print("slope: ", round(w, 6), " intercept: ", round(b, 6))
