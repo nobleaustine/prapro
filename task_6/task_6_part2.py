@@ -7,6 +7,7 @@ import csv
 from fpdf import FPDF
 from fpdf.fonts import FontFace
 
+
 # defining header and footer
 class PDF(FPDF):
     def header(self):
