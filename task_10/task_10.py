@@ -13,10 +13,11 @@ import visdom
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 # function to plot actual and predicted line
 def plot_graph(m, c):
 
-    global x,window
+    global x, window
 
     p = m * x + c
     y = 2 * x
@@ -25,28 +26,29 @@ def plot_graph(m, c):
         X=x,
         Y=np.column_stack((y, p)),
         win=window,
-        update='replace',
+        update="replace",
         opts=dict(
             legend=["actual", "predicted"],
-            xlabel='x',
-            ylabel='y',
-            title="Gradient Descent Algorithm (UPDATE) ", 
-            linecolor=np.array([[0, 255, 0],[225, 0, 0]])
-                )
-        )
+            xlabel="x",
+            ylabel="y",
+            title="Gradient Descent Algorithm (UPDATE) ",
+            linecolor=np.array([[0, 255, 0], [225, 0, 0]]),
+        ),
+    )
 
     viz.line(
         X=x,
         Y=np.column_stack((y, p)),
         opts=dict(
             legend=["actual", "predicted"],
-            xlabel='x',
-            ylabel='y',
-            title="Gradient Descent Algorithm", 
-            linecolor=np.array([[0, 255, 0],[225, 0, 0]])
-                )
-        )
-    
+            xlabel="x",
+            ylabel="y",
+            title="Gradient Descent Algorithm",
+            linecolor=np.array([[0, 255, 0], [225, 0, 0]]),
+        ),
+    )
+
+
 # function to perform GDA
 def GDA(X, Y, epochs):
 
@@ -81,11 +83,14 @@ def GDA(X, Y, epochs):
 
     return w[0][0], b[0][0]
 
+
 if __name__ == "__main__":
 
     # data visualization tool
-    viz = visdom.Visdom(server='http://localhost', port=8097)
-    assert viz.check_connection(), "connection failed: check if Visdom server is running."
+    viz = visdom.Visdom(server="http://localhost", port=8097)
+    assert (
+        viz.check_connection()
+    ), "connection failed: check if Visdom server is running."
 
     # data
     X = np.array([[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]])
@@ -96,17 +101,18 @@ if __name__ == "__main__":
 
     window = viz.line(
         X=x,
-        Y=np.column_stack((2*x, np.random.rand(10))),
+        Y=np.column_stack((2 * x, np.random.rand(10))),
         opts=dict(
             legend=["actual", "predicted"],
-            xlabel='x',
-            ylabel='y',
-            title="Gradient Descent Algorithm (UPDATE)", 
-            linecolor=np.array([[0, 255, 0],[225, 0, 0]])),
-            )
+            xlabel="x",
+            ylabel="y",
+            title="Gradient Descent Algorithm (UPDATE)",
+            linecolor=np.array([[0, 255, 0], [225, 0, 0]]),
+        ),
+    )
 
     # GDA on action
     w, b = GDA(X, Y, 100000)
     print("slope: ", round(w, 6), " intercept: ", round(b, 6))
-    
+
     viz.close()
