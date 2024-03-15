@@ -12,7 +12,6 @@ inputs = [
 
 @pytest.mark.parametrize("input", inputs)
 def test_process(input):
-
     memory = sm.SharedMemory(create=True, name="memory", size=16 * input[0])
     array = np.ndarray((input[0],), buffer=memory.buf, dtype=int)
     multi_process(input[0], input[2])
@@ -25,7 +24,6 @@ def test_process(input):
 
 @pytest.mark.parametrize("input", inputs)
 def test_process_pool(input):
-
     memory = sm.SharedMemory(create=True, name="memory", size=16 * input[0])
     array = np.ndarray((input[0],), buffer=memory.buf, dtype=int)
     process_pool(input[0], input[1], input[2])

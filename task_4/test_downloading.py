@@ -7,7 +7,6 @@ import os
 
 @pytest.fixture
 def get_urls():
-
     urls = [
         "https://images.squarespace-cdn.com/content/54efd71fe4b06377d0b2fb17/1525152563529-4XIS44FIBU4N7JCZLEXD/20180429+-+Juanes+-+Toronto+Music+Photography+-+Captive+Camera-5391.jpg?content-type=image%2Fjpeg",
         "https://n.nordstrommedia.com/ImageGallery/store/product/Zoom/19/_10248639.jpg?crop=pad&amp;pad_color=FFF&amp;format=jpeg&amp;w=704&amp;h=1080",

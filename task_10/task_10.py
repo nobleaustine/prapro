@@ -16,7 +16,6 @@ import matplotlib.pyplot as plt
 
 # function to plot actual and predicted line
 def plot_graph(m, c):
-
     global x, window
 
     p = m * x + c
@@ -51,7 +50,6 @@ def plot_graph(m, c):
 
 # function to perform GDA
 def GDA(X, Y, epochs):
-
     # initializing random weight and bias
     w = np.random.rand(1, 1)
     b = np.random.rand(1, 1)
@@ -60,7 +58,6 @@ def GDA(X, Y, epochs):
     I = np.ones((n, 1))
 
     for i in range(epochs):
-
         print("epoch: ", i)
         P = X @ w + I @ b
 
@@ -85,7 +82,6 @@ def GDA(X, Y, epochs):
 
 
 if __name__ == "__main__":
-
     # data visualization tool
     viz = visdom.Visdom(server="http://localhost", port=8097)
     assert (

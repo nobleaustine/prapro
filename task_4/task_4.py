@@ -12,12 +12,10 @@ import os
 
 
 def get_image(url, i):
-
     URL = url.split("/")[-1]
     extension = URL.split("?")[0]
     ext = extension.split(".")[-1]
     if len(ext) < 4 or len(ext) > 0:
-
         # creating image name and path
         image_name = f"image_{i}.{ext}"
         image_path = os.path.join("downloads", image_name)
@@ -28,7 +26,6 @@ def get_image(url, i):
             response = requests.get(url, headers=headers, timeout=(10, 40))
 
             if response.url.startswith("https://"):
-
                 if response.status_code == 200:
                     with open(image_path, "wb") as file:
                         file.write(response.content)

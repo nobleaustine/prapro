@@ -11,7 +11,6 @@ from fpdf.fonts import FontFace
 # defining header and footer
 class PDF(FPDF):
     def header(self):
-
         self.set_font("helvetica", "B", 15)
         width = self.get_string_width(self.title) + 6
         self.set_x((210 - width) / 2)
@@ -22,7 +21,6 @@ class PDF(FPDF):
         self.ln(10)
 
     def footer(self):
-
         self.set_y(-15)
         self.set_font("helvetica", "I", 8)
         self.set_text_color(128)

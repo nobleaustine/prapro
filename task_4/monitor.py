@@ -2,7 +2,6 @@ import subprocess
 import psutil
 
 while True:
-
     speedtest_output = subprocess.run(
         ["speedtest-cli", "--simple"], capture_output=True, text=True
     )

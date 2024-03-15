@@ -19,9 +19,7 @@ def give_y(give_x):
 
 
 def test_gda(give_x, give_y):
-
     for x, y in zip(give_x, give_y):
-
         slope, intercept = np.polyfit(np.ravel(x), np.ravel(y), 1)
         w, b = GDA(x, y, 10000)
         assert np.isclose(slope, w, atol=0.1) == True

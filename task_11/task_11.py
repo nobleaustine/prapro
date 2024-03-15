@@ -27,7 +27,6 @@ def fill_array(part):
 
 # function use a pool to fill random numbers
 def process_pool(n, p, chunk_size):
-
     with ProcessPoolExecutor(max_workers=p) as executor:
         futures = []
         for i in range(0, n, chunk_size):
@@ -47,7 +46,6 @@ def multi_process(n, chunk_size):
 
 
 if __name__ == "__main__":
-
     # taking array size and process number from user
     n = int(input("Enter the size of the array: "))
     p = int(input("Enter the number of processes: "))

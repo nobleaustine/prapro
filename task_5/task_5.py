@@ -18,10 +18,8 @@ import os
 
 
 class Downloader:
-
     # constructor equivalent function gets called at Downloader(link)
     def __init__(self, pq_file: str):
-
         self.df = pq.read_table(pq_file, columns=["URL"]).to_pandas()
         self.header = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0"
@@ -39,7 +37,6 @@ class Downloader:
 
     # download an image provided the index
     def download_image(self, index: int) -> str:
-
         # setting up url and image name
         url = self.df["URL"][index]
         root, ext = os.path.splitext(url)

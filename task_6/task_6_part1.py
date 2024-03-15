@@ -16,10 +16,8 @@ import os
 
 
 class Downloader:
-
     # constructor equivalent function gets called at Downloader(link)
     def __init__(self, pq_file: str):
-
         self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=50)
         self.df = pq.read_table(pq_file, columns=["URL"]).to_pandas()
         self.header = {
@@ -38,7 +36,6 @@ class Downloader:
 
     # download an image provided the index
     def download_image(self, index: int) -> str:
-
         # setting up url and image name
         url = self.df["URL"][index]
         root, ext = os.path.splitext(url)
@@ -71,7 +68,6 @@ class Downloader:
 
     # downloading images within a range
     def download_range(self, start: int, stop: int) -> list:
-
         arguments = list(range(start, stop))
         image_paths = list(self.executor.map(self.download_image, arguments))
 

@@ -5,7 +5,6 @@ import os
 
 @pytest.mark.parametrize("index", [8, 13, 34])
 def test_index(index):
-
     d = Downloader("../task_4/links.parquet")
     image_path = d[index]
 

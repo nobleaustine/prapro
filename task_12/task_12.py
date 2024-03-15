@@ -8,6 +8,7 @@
 # argparse
 
 import argparse
+import sys
 
 
 def multiply(a, b):
@@ -44,6 +45,6 @@ def arithematic():
 
 
 if __name__ == "__main__":
-
     a, b, c = arithematic()
+    print("arguments passed: ", sys.argv)
     print(f"{a} + {b} = {c}") if a + b == c else print(f"{a} x {b} = {c}")
